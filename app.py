@@ -5,7 +5,6 @@ from diffusers import AutoPipelineForInpainting
 pipeline = AutoPipelineForInpainting.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16
 ).to("cuda")
-pipeline.enable_model_cpu_offload()
 
 def image_inpaint(image_input, mask_input, prompt_input):
     image = pipeline(prompt=prompt_input, image=image_input, mask_image=mask_input).images[0]
